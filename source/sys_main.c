@@ -23,6 +23,7 @@
 #include "het.h"
 #include "gio.h"
 #include "bl_run_target.h"
+#include "bl_watchdog.h"
 
 /* Define Task Handles */
 xTaskHandle xTask1Handle;
@@ -53,10 +54,9 @@ void redTask(void *pvParameters)
     	set_value(PIN_RED, red);
     	red = toggle(red);
     	vTaskDelay(delay);
-    	if(--target_counter < 0){
-    		vTaskEndScheduler();
-//    		softReset();
-    	}
+//    	if(--target_counter < 0){
+//   		softReset();
+//    	}
     }
 }
 
@@ -78,6 +78,7 @@ void greenTask(void *pvParameters)
 	int delay = 200;
 
     for(;;){
+    	kickWatchdog();
     	set_value(PIN_GREEN, green);
     	green = toggle(green);
     	vTaskDelay(delay);
@@ -114,8 +115,6 @@ int main(void)
 
     /* Start Scheduler */
     vTaskStartScheduler();
-
-	softReset();
 
 /* USER CODE END */
 

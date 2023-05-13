@@ -9,6 +9,7 @@
 
 #include "bl_run_target.h"
 #include "system.h"
+#include "SystemServiceEntry.h"
 
 // The patterns stored in RAM for each run target.
 // Actually Unknown is anything but FLASH_LOADER or APPLICATION
@@ -48,6 +49,7 @@ enum target_value get_target(){
 }
 
 void softReset(){
+	SWIRaisePrivilege();
 	systemREG1->SYSECR |= 0x00008000;
 }
 
