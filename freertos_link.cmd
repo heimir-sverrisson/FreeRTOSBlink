@@ -33,9 +33,9 @@ MEMORY
     RAM     (RW) : origin=0x08001500 + 0x800 length=0x0001EB00 - 0x800
 */
 
-	VECTORS	(X)		: origin=0x00010100 length=0x00000040
-	KERNEL	(RX)	: origin=0x00010140 length=0x00008000
-	FLASH0	(RX)	: origin=0x00018140 length=0x000E7EC0
+	VECTORS	(X)		: origin=0x00010000 length=0x00000040
+	KERNEL	(RX)	: origin=0x00010040 length=0x00008000
+	FLASH0	(RX)	: origin=0x00018040 length=0x000E7FC0
 
 	RUNTARGET (RW)  : origin=0x08000000 length=0x00000010
     STACKS  (RW)    : origin=0x08000010 length=0x000014F0
